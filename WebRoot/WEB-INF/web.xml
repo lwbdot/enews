@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <!-- 配置一个解决中文乱码的过滤器 --> 
+  <filter>
+    <filter-name>CodingFilter</filter-name>
+    <filter-class>com.lwb.web.filters.CodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- 使用Spring解决Hibernate懒加载问题的过滤器 -->
+  <filter>
+    <filter-name>OpenSessionInViewFilter</filter-name>
+    <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>OpenSessionInViewFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- 使用Spring解决中文乱码的过滤器 -->
+  <!--  
+  <filter>
+    <filter-name>encoding</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  -->
+
+  <!-- 在Tomcat启动时启动struts容器 -->
+  <servlet>
+    <servlet-name>struts</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>struts</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  <!-- 在Tomcat启动时启动Spring容器，则在Java代码中不再需要使用下面一句语句： -->
+  <!-- ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml"); -->
+  <!-- 指定spring的配置文件，默认从web根目录寻找配置文件，也可以通过spring提供的classpath:前缀指定从类路径下寻找 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+
+  <!-- 对Spring容器进行实例化 -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+</web-app>

@@ -1,0 +1,68 @@
+
+.login_box{
+    width:900px;
+    margin: 60px auto 0;
+}
+
+.lo_box{
+    width:294px;
+    margin-top: 15px;
+    margin-bottom:15px;
+}
+
+.welcome_label{
+    border-bottom:1px solid #dadada;
+    padding-bottom:5px;
+    margin-bottom: 10px;
+    font-size:25px
+}
+
+.register_note{
+    border: 7px solid #dadada;
+    width:850px;
+    bgcolor:grey;
+    overflow: hidden;
+}
+
+.note_title{
+    font-size:25px;
+    color:black;
+}
+
+.register_label{
+    font-size:15px;
+    color:#666666;
+    line-height:20px;
+}
+
+.register_star{
+    color: red;
+    font-size: 15px;
+}
+
+.login_text{
+    border: 1px solid #dadada;
+    padding-left: 3px;
+    width:278px;
+    height:30px;
+    font-size:25px;
+    color:blue;
+    margin-bottom: 10px;
+}
+
+.reset_button{
+	background: url(../images/pageimg/reset.gif)  no-repeat;
+    width:75px;
+    height:30px;
+    border: none;
+    cursor: pointer;
+    margin-left:20px
+}
+
+.login_button{
+    background: url(../images/pageimg/register.gif)  no-repeat;
+    width:173px;
+    height:30px;
+    border: none;
+    cursor: pointer;
+}

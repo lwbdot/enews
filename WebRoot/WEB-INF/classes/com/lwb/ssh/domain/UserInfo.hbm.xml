@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping 
+  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+  <hibernate-mapping package="com.lwb.ssh.domain">
+    <class name="UserInfo" table="tb_userinfo">
+      <id name="id" type="java.lang.Integer">
+        <generator class="native"/>
+      </id>
+      <property name="userName" type="java.lang.String">
+        <column name="u_name" not-null="true" length="32" />
+      </property>
+      <property name="userPass" type="java.lang.String">
+        <column name="u_pass" not-null="true" length="32" />
+      </property>
+      <property name="userEmail" type="java.lang.String">
+        <column name="u_email" not-null="false" length="64" />
+      </property>
+      <property name="userRealName" type="java.lang.String">
+        <column name="u_real_name" not-null="false" length="32" />
+      </property>
+      <property name="userLevel" type="java.lang.Integer">
+        <column name="u_level" not-null="true"/>
+      </property>
+      <property name="userRigisterDate" type="java.util.Date">
+        <column name="u_rigister_date" not-null="true"/>
+      </property>
+    </class>
+  </hibernate-mapping>

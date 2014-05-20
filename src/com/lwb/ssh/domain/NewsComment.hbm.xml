@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping 
+  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+  <hibernate-mapping package="com.lwb.ssh.domain">
+    <class name="NewsComment" table="tb_newscomment">
+      <id name="id" type="java.lang.Integer">
+        <generator class="native"/>
+      </id>
+      <property name="newsId" type="java.lang.Integer">
+        <column name="nid" not-null="true"/>
+      </property>
+      <property name="newsCommenterId" type="java.lang.Integer">
+        <column name="n_commenter_id" not-null="true"/>
+      </property>
+      <property name="newsCommentContent" type="java.lang.String">
+        <column name="n_comment_content" not-null="true" length="512"/>
+      </property>
+      <property name="newsCommentDate" type="java.util.Date">
+        <column name="n_comment_date" not-null="true"/>
+      </property>
+      <property name="newsCommentStatus" type="java.lang.Integer">
+        <column name="n_comment_status" not-null="true" default="1"/>
+      </property>
+      <property name="newsExtra" type="java.lang.String">
+        <column name="n_extra" not-null="false" length="32" default="0"/>
+      </property>
+    </class>
+  </hibernate-mapping>

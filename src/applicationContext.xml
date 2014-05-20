@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+                http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+        destroy-method="close">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <property name="url" value="jdbc:mysql://localhost:3306/inews"/>
+    <property name="username" value="root"/>
+    <property name="password" value="123456"/>
+    <property name="initialSize" value="3"/>
+    <property name="maxActive" value="500"/>
+    <property name="maxIdle" value="2"/>
+    <property name="minIdle" value="1"/>
+  </bean>
+
+  <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="mappingResources">
+      <list>
+        <value>com/lwb/ssh/domain/News.hbm.xml</value>
+        <value>com/lwb/ssh/domain/NewsComment.hbm.xml</value>
+        <value>com/lwb/ssh/domain/NewsDetail.hbm.xml</value>
+        <value>com/lwb/ssh/domain/UserInfo.hbm.xml</value>
+      </list>
+    </property>
+    <property name="hibernateProperties">
+      <value>
+        hibernate.dialect=org.hibernate.dialect.MySQLDialect
+        hibernate.hbm2ddl.auto=update
+        hibernate.show_sql=false
+        hibernate.format_sql=false        
+     </value>
+    </property>
+  </bean>
+
+  <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+    <property name="sessionFactory" ref="sessionFactory"/>
+  </bean>
+
+  <tx:annotation-driven transaction-manager="txManager"/>
+
+  <bean id="ncs" class="com.lwb.services.implementts.NewsCommentService">
+    <property name="factory" ref="sessionFactory"/>
+  </bean>
+  <bean id="nds" class="com.lwb.services.implementts.NewsDetailService">
+    <property name="factory" ref="sessionFactory"/>
+  </bean>
+  <bean id="ns" class="com.lwb.services.implementts.NewsService">
+    <property name="factory" ref="sessionFactory"/>
+  </bean>
+  <bean id="uis" class="com.lwb.services.implementts.UserInfoService">
+    <property name="factory" ref="sessionFactory"/>
+  </bean>
+
+  <bean scope="prototype" name="/user" class="com.lwb.web.actions.UserAction">
+    <property name="usi" ref="uis"/>
+  </bean>
+  <bean scope="prototype" name="/news" class="com.lwb.web.actions.NewsAction">
+    <property name="nsi" ref="ns"/>
+    <property name="csi" ref="ncs"/>
+    <property name="dsi" ref="nds"/>
+    <property name="usi" ref="uis"/>
+  </bean>
+  <bean scope="prototype" name="/addNews" class="com.lwb.web.actions.AddNewsAction">
+    <property name="nsi" ref="ns"/>
+    <property name="dsi" ref="nds"/>
+    <property name="usi" ref="uis"/>
+  </bean>
+  <bean scope="prototype" name="/searchNews" class="com.lwb.web.actions.SearchNews">
+    <property name="nsi" ref="ns"/>
+    <property name="dsi" ref="nds"/>
+    <property name="usi" ref="uis"/>
+    <property name="csi" ref="ncs"/>
+  </bean>
+</beans>

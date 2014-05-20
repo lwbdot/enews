@@ -1,0 +1,87 @@
+.login_logo{
+	width:810px;
+	height:50px;
+	margin-bottom: 30px;
+	bgcolor:white;
+}
+
+.login_box{
+	width:900px;
+	margin: 15px auto;
+}
+
+.login_main{
+	border: 5px solid #dadada;
+/*	width:850px;*/
+	height:300px;
+	background: url(../images/login.jpg) no-repeat 0px 0px white;
+	overflow: hidden;
+}
+
+.lo_box{
+	width:294px;
+	height: 255px;
+	margin-top: 15px;
+}
+
+.welcome_label{
+	border-bottom:1px solid #dadada;
+	padding-bottom:5px;
+	margin-bottom: 10px;
+	font-size:25px
+}
+
+.register_note{
+	border: 5px solid #dadada;
+    height: 530px;
+}
+
+.note_title{
+    font-size:25px;
+    color:black;
+}
+
+.register_label{
+	font-size:15px;
+	color:#666666;
+	line-height:20px;
+}
+
+.register_star{
+	color: red;
+	font-size: 15px;
+}
+.register_btn{
+	background: #0099cc;
+    color: white;
+    font-size: 15px;
+    width: 280px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+.login_text{
+	border: 1px solid #dadada;
+	padding-left: 3px;
+	width:278px;
+	height:30px;
+	font-size:25px;
+	color:blue;
+	margin-bottom: 10px;
+}
+
+.login_button{
+	background: url(../images/login_button.gif) ;
+	width:278px;
+	height:30px;
+	border: none;
+	cursor: pointer;
+}
+
+.admin_login_button{
+	bgcolor:white;
+    width:100px;
+    height:23px;
+    border: none;
+    cursor: pointer;
+}

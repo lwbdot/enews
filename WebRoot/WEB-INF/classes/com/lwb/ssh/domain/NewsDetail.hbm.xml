@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping 
+  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+  <hibernate-mapping package="com.lwb.ssh.domain">
+    <class name="NewsDetail" table="tb_newsdetail">
+      <id name="id" type="java.lang.Integer">
+        <generator class="native"/>
+      </id>
+      <property name="newsId" type="java.lang.Integer">
+        <column name="nid" not-null="true"/>
+      </property>
+      <property name="newsWriterId" type="java.lang.Integer">
+        <column name="n_writer_id" not-null="true"/>
+      </property>
+      <property name="newsClassify" type="java.lang.String">
+        <column name="n_classify" length="32"/>
+      </property>
+      <property name="newsReadTimes" type="java.lang.Integer">
+        <column name="n_read_times" not-null="true"/>
+      </property>
+      <property name="newsFlag" type="java.lang.Integer">
+        <column name="n_flag" not-null="true"/>
+      </property>
+      <property name="newsPicPath" type="java.lang.String">
+        <column name="n_pic_path" not-null="true" length="256"/>
+      </property>
+      <property name="newsAttachPath" type="java.lang.String">
+        <column name="n_attach_path" not-null="true" length="256"/>
+      </property>
+      <property name="newsContent" type="java.lang.String">
+        <column name="n_content" not-null="true" length="4096" />
+      </property>
+    </class>
+  </hibernate-mapping>

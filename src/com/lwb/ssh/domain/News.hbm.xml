@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping 
+  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+  <hibernate-mapping package="com.lwb.ssh.domain">
+    <class name="News" table="tb_news">
+      <!-- 主键生成策略 -->
+      <id name="id" type="java.lang.Integer">
+        <generator class="native"/>
+      </id>
+
+      <property name="newsTitle" type="java.lang.String">
+        <column name="n_title" not-null="true" length="128" />
+      </property>
+      <property name="newsPublishDate" type="java.util.Date">
+        <column name="n_publish_date" not-null="true"/>
+      </property>
+      <property name="newsWrittenDate" type="java.util.Date">
+        <column name="n_written_date" not-null="true"/>
+      </property>
+      <property name="newsExtra" type="java.lang.String">
+        <column name="n_extra" not-null="false" length="32" />
+      </property>
+      <property name="newsTypeId" type="java.lang.Integer">
+        <column name="n_type_id" not-null="true"/>
+      </property>
+    </class>
+  </hibernate-mapping>

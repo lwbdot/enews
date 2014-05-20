@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+<!--  
+  <form-beans>
+    <form-bean name="uploadSlider" type="com.lwb.web.forms.SliderFiles"/>
+  </form-beans>
+-->
+
+  <!-- 配置全局跳转，命名为：goXxx -->
+  <global-forwards>
+   <forward name="goLogin" path="/jspFrameSet.jsp"></forward>
+   <forward name="goResult" path="/jspFrameSet.jsp"></forward>
+   <forward name="goHome" path="/home.jsp"/>
+   <forward name="goIndex" path="/index.jsp"/>
+  </global-forwards>
+
+  <action-mappings>
+    <!--
+    <action path="/login" parameter="flag" name="employeeForm" type="com.lwb.web.actions.LoginAction">
+    -->
+    <!-- 局部跳转，命名为：gotoXxx -->
+    <action path="/user" parameter="flag">
+      <forward name="gotoHome" path="/index.jsp"/>
+      <forward name="gotoLogin" path="/jspFrameSet.jsp"/>
+      <forward name="gotoRegister" path="/jspFrameSet.jsp"/>
+      <forward name="gotoMySpace" path="/jspFrameSet.jsp"/>
+      <forward name="gotoUserList" path="/jspFrameSet.jsp"/>
+    </action>
+    <action path="/news" parameter="flag">
+      <forward name="listNews" path="/jspFrameSet.jsp"/>
+      <forward name="gotoMySpace" path="/jspFrameSet.jsp"/>
+      <forward name="gotoMySpaceNewsList" path="/jspFrameSet.jsp"/>
+    </action>
+    <action path="/addNews" parameter="flag">
+      <forward name="gotoAdd" path="/jspFrameSet.jsp"/>
+    </action>
+    <action path="/searchNews" parameter="flag">
+      <forward name="gotoSearch" path="/jspFrameSet.jsp"/>
+    </action>
+    
+    <!-- 上传文件的action不要Spring接管，因为Spring接管后，将不能使用JspSmartUpload-->
+    <action path="/addSliders" parameter="flag" type="com.lwb.web.actions.AddSliders">
+      <forward name="gotoAddSliders" path="/jspFrameSet.jsp"/>
+    </action>
+  </action-mappings>
+
+  <!-- 下面将各个action也配置到Spring容器中，则上面action中的type属性就可以删去了 -->
+  <controller>
+    <set-property property="processorClass" value="org.springframework.web.struts.DelegatingRequestProcessor"/>
+  </controller>
+</struts-config>

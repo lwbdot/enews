@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+.container{
+ width: 996px;
+ margin: 0 auto;
+ background-color: white;
+}
+.info{
+ padding:15px;
+}
+.info span{
+ font-family: "Arial";
+ font-size: 17px;
+ font-weight: bold;
+ color: #333333;
+}
+.fullwidth{
+ top: 176px;
+ width: 100%;
+ 
+}
+.clearfix{
+ clear: both;
+ display: block;
+}
+.slidesArea{
+ margin-left: 20px;
+ width: 550px;
+}
+.introduce{
+ margin: 0 auto;
+}
+.text{
+ width: 530px;
+ padding: 0 15px 0 15px;
+}
+.textTitle{
+ font-size: 19px;
+ color: #0099cc;
+ font-family: "Arial";
+ font-weight: normal;
+ text-align: justify;
+}
+.textContent{
+ font-size: 14px;
+ color: #555555;
+ font-family: "Arial";
+ font-weight: normal;
+ text-align: justify;
+}
+.pic{
+ margin-top: 0px;
+ margin-right: 5px;
+}
